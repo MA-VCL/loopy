@@ -40,14 +40,11 @@ function Sidebar(loopy){
 			label: "<br><br>Name:"
 			//label: "Name:"
 		}));
-		page.addComponent("hue", new ComponentSlider({
-			bg: "color",
-			label: "Color:",
-			options: [0,1,2,3,4,5],
+		page.addComponent("hue", new ComponentColorPicker({
 			oninput: function(value){
 				Node.defaultHue = value;
 			}
-		}));
+		}));			
 		page.addComponent("init", new ComponentSlider({
 			bg: "initial",
 			label: "Start Amount:",
@@ -450,4 +447,58 @@ function ComponentOutput(config){
 		self.dom.value = string;
 	};
 
+}
+
+function ComponentColorPicker(config) {
+
+    var self = this;
+    Component.apply(self);
+
+    self.dom = document.createElement("div");
+    self.dom.style.display = "flex";
+    self.dom.style.flexWrap = "wrap";
+    self.dom.style.marginTop = "10px";
+
+    // Generate swatches
+    Object.keys(Node.COLORS).forEach(function(hueIndex) {
+        var swatch = document.createElement("div");
+        swatch.style.width = "30px";
+        swatch.style.height = "30px";
+        swatch.style.margin = "5px";
+        swatch.style.cursor = "pointer";
+        swatch.style.backgroundColor = Node.COLORS[hueIndex];
+        swatch.style.border = "2px solid transparent";
+        swatch.setAttribute("data-hue", hueIndex);
+
+        // On click: set the hue
+        swatch.onclick = function() {
+            var hue = parseInt(this.getAttribute("data-hue"));
+            self.setValue(hue);
+
+            // Highlight selected
+            Array.from(self.dom.children).forEach(function(child) {
+                child.style.border = "2px solid transparent";
+            });
+            this.style.border = "2px solid black";
+
+            // Callback if needed
+            if (config.oninput) {
+                config.oninput(hue);
+            }
+        };
+
+        self.dom.appendChild(swatch);
+    });
+
+    // Show current value
+    self.show = function() {
+        var currentHue = self.getValue();
+        Array.from(self.dom.children).forEach(function(child) {
+            if (parseInt(child.getAttribute("data-hue")) === currentHue) {
+                child.style.border = "2px solid black";
+            } else {
+                child.style.border = "2px solid transparent";
+            }
+        });
+    };
 }

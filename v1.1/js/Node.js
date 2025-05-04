@@ -5,12 +5,26 @@ NODE!
 **********************************/
 
 Node.COLORS = {
-	0: "#EA3E3E", // red
-	1: "#EA9D51", // orange
-	2: "#FEEE43", // yellow
-	3: "#BFEE3F", // green
-	4: "#7FD4FF", // blue
-	5: "#A97FFF" // purple
+    0: "#D4351C",   // British Army Red
+    1: "#5D8AA8",   // RAF Blue
+    2: "#003152",   // Royal Navy Blue
+    3: "#532A45",   // MOD Purple
+    4: "#E6194B",   // Bright Red
+    5: "#F58231",   // Orange
+    6: "#FFC107",   // Golden Yellow
+    7: "#99E600",   // Lime Green
+    8: "#3CB44B",   // Forest Green
+    9: "#42D4F4",   // Aqua / Teal
+    10: "#00BFFF",  // Sky Blue
+    11: "#4363D8",  // Royal Blue
+    12: "#911EB4",  // Purple
+    13: "#F032E6",  // Magenta
+    14: "#FABED4",  // Rose Pink
+    15: "#FFD8B1",  // Peach
+    16: "#FFFF66",  // Light Yellow
+    17: "#A2F5A2",  // Mint Green
+    18: "#B3E6F2",  // Light Cyan
+    19: "#CBA2F5"   // Lavender
 };
 
 Node.defaultValue = 0.5;
